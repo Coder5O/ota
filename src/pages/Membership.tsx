@@ -14,6 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { getSafeErrorMessage } from "@/lib/errorHandler";
 import { Search, Users, UserPlus, Filter, Loader2 } from "lucide-react";
 
 const branches = [
@@ -53,27 +54,41 @@ export default function Membership() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const { error } = await supabase.from("members").insert({
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      age: parseInt(formData.age),
-      gender: formData.gender,
-      branch: formData.branch,
-      address: formData.address || null,
-    });
-    setSubmitting(false);
 
-    if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
-    } else {
-      toast({
-        title: "Registration Submitted",
-        description: "Your membership application has been submitted for approval.",
-      });
-      setFormData({ firstName: "", lastName: "", email: "", phone: "", age: "", gender: "", branch: "", address: "" });
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-membership`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY },
+          body: JSON.stringify({
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            phone: formData.phone,
+            age: parseInt(formData.age),
+            gender: formData.gender,
+            branch: formData.branch,
+            address: formData.address || null,
+          }),
+        }
+      );
+      const result = await response.json();
+
+      if (!response.ok) {
+        toast({ title: "Error", description: result.error || "An error occurred. Please try again.", variant: "destructive" });
+      } else {
+        toast({
+          title: "Registration Submitted",
+          description: "Your membership application has been submitted for approval.",
+        });
+        setFormData({ firstName: "", lastName: "", email: "", phone: "", age: "", gender: "", branch: "", address: "" });
+      }
+    } catch {
+      toast({ title: "Error", description: "An error occurred. Please try again.", variant: "destructive" });
     }
+
+    setSubmitting(false);
   };
 
   // Only approved members are returned by RLS
@@ -178,21 +193,21 @@ export default function Membership() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="firstName">First Name</Label>
-                        <Input id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
+                        <Input id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} maxLength={100} required />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="lastName">Last Name</Label>
-                        <Input id="lastName" name="lastName" value={formData.lastName} onChange={handleInputChange} required />
+                        <Input id="lastName" name="lastName" value={formData.lastName} onChange={handleInputChange} maxLength={100} required />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
+                        <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} maxLength={255} required />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="phone">Phone Number</Label>
-                        <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} required />
+                        <Input id="phone" name="phone" type="tel" pattern="[0-9+\-\s()]+" title="Please enter a valid phone number" value={formData.phone} onChange={handleInputChange} maxLength={20} required />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -224,7 +239,7 @@ export default function Membership() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="address">Address</Label>
-                      <Input id="address" name="address" value={formData.address} onChange={handleInputChange} placeholder="Physical address" />
+                      <Input id="address" name="address" value={formData.address} onChange={handleInputChange} maxLength={500} placeholder="Physical address" />
                     </div>
                     <Button type="submit" variant="gold" size="lg" className="w-full" disabled={submitting}>
                       {submitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
