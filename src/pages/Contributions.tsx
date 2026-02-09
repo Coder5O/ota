@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -16,7 +17,7 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import { ChevronLeft, DollarSign, Package } from "lucide-react";
+import { ChevronLeft, ChevronDown, DollarSign, Package } from "lucide-react";
 
 // Sample contributions data - will be replaced with real data from backend
 const chaptersData = [
@@ -114,6 +115,7 @@ const livestockTypes = [
 ];
 
 export default function Contributions() {
+  const [livestockOpen, setLivestockOpen] = useState(false);
   const [selectedChapter, setSelectedChapter] = useState<typeof chaptersData[0] | null>(null);
 
   const pieData = chaptersData.map((c) => ({
@@ -186,20 +188,37 @@ export default function Contributions() {
             </Card>
           </div>
 
-          {/* Livestock Summary */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {livestockTypes.map((type) => (
-              <Card key={type.name}>
-                <CardContent className="p-4 text-center">
-                  <p className="text-sm text-muted-foreground mb-1">{type.name}</p>
-                  <p className="font-display text-2xl font-bold text-foreground" style={{ color: type.color }}>
-                    {type.value.toLocaleString()}
-                  </p>
-                  <p className="text-xs text-muted-foreground">head</p>
+          {/* Livestock Summary - Collapsible */}
+          <Collapsible open={livestockOpen} onOpenChange={setLivestockOpen} className="mb-12">
+            <CollapsibleTrigger asChild>
+              <Card className="cursor-pointer hover:shadow-elevated transition-shadow">
+                <CardContent className="p-6 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <p className="font-display text-lg font-semibold text-foreground">Livestock</p>
+                    <p className="text-muted-foreground text-sm">
+                      {(totalCows + totalGoats + totalSheep + totalChicken).toLocaleString()} head total
+                    </p>
+                  </div>
+                  <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${livestockOpen ? "rotate-180" : ""}`} />
                 </CardContent>
               </Card>
-            ))}
-          </div>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                {livestockTypes.map((type) => (
+                  <Card key={type.name}>
+                    <CardContent className="p-4 text-center">
+                      <p className="text-sm text-muted-foreground mb-1">{type.name}</p>
+                      <p className="font-display text-2xl font-bold text-foreground" style={{ color: type.color }}>
+                        {type.value.toLocaleString()}
+                      </p>
+                      <p className="text-xs text-muted-foreground">head</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
 
           {selectedChapter ? (
             /* Chapter Detail View */
