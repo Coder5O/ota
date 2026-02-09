@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { getSafeErrorMessage } from "@/lib/errorHandler";
 import { Shield, Loader2 } from "lucide-react";
 
 export default function AdminLogin() {
@@ -30,7 +31,7 @@ export default function AdminLogin() {
     setSubmitting(false);
 
     if (error) {
-      toast({ title: "Login Failed", description: error.message, variant: "destructive" });
+      toast({ title: "Login Failed", description: getSafeErrorMessage(error), variant: "destructive" });
       return;
     }
 

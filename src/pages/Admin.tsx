@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { getSafeErrorMessage } from "@/lib/errorHandler";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Shield, Users, CalendarDays, CheckCircle, XCircle, Plus, Edit, Trash2,
@@ -73,7 +74,7 @@ export default function Admin() {
   const updateMemberStatus = async (id: string, status: string) => {
     const { error } = await supabase.from("members").update({ status }).eq("id", id);
     if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({ title: "Error", description: getSafeErrorMessage(error), variant: "destructive" });
     } else {
       toast({ title: "Success", description: `Member ${status}` });
       setMembers((prev) => prev.map((m) => (m.id === id ? { ...m, status } : m)));
@@ -89,7 +90,7 @@ export default function Admin() {
     if (editingEvent) {
       const { error } = await supabase.from("events").update(eventForm).eq("id", editingEvent.id);
       if (error) {
-        toast({ title: "Error", description: error.message, variant: "destructive" });
+        toast({ title: "Error", description: getSafeErrorMessage(error), variant: "destructive" });
       } else {
         toast({ title: "Event Updated" });
         setEvents((prev) => prev.map((e) => (e.id === editingEvent.id ? { ...e, ...eventForm } : e)));
@@ -97,7 +98,7 @@ export default function Admin() {
     } else {
       const { data, error } = await supabase.from("events").insert({ ...eventForm, created_by: user!.id }).select().single();
       if (error) {
-        toast({ title: "Error", description: error.message, variant: "destructive" });
+        toast({ title: "Error", description: getSafeErrorMessage(error), variant: "destructive" });
       } else if (data) {
         toast({ title: "Event Created" });
         setEvents((prev) => [data, ...prev]);
@@ -109,7 +110,7 @@ export default function Admin() {
   const deleteEvent = async (id: string) => {
     const { error } = await supabase.from("events").delete().eq("id", id);
     if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({ title: "Error", description: getSafeErrorMessage(error), variant: "destructive" });
     } else {
       toast({ title: "Event Deleted" });
       setEvents((prev) => prev.filter((e) => e.id !== id));
@@ -335,11 +336,11 @@ export default function Admin() {
                       <div className="space-y-4">
                         <div className="space-y-2">
                           <Label>Title</Label>
-                          <Input value={eventForm.title} onChange={(e) => setEventForm((p) => ({ ...p, title: e.target.value }))} />
+                          <Input value={eventForm.title} onChange={(e) => setEventForm((p) => ({ ...p, title: e.target.value }))} maxLength={200} />
                         </div>
                         <div className="space-y-2">
                           <Label>Description</Label>
-                          <Input value={eventForm.description} onChange={(e) => setEventForm((p) => ({ ...p, description: e.target.value }))} />
+                          <Input value={eventForm.description} onChange={(e) => setEventForm((p) => ({ ...p, description: e.target.value }))} maxLength={2000} />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-2">
@@ -348,12 +349,12 @@ export default function Admin() {
                           </div>
                           <div className="space-y-2">
                             <Label>Time</Label>
-                            <Input value={eventForm.event_time} onChange={(e) => setEventForm((p) => ({ ...p, event_time: e.target.value }))} placeholder="e.g. 09:00 AM" />
+                            <Input value={eventForm.event_time} onChange={(e) => setEventForm((p) => ({ ...p, event_time: e.target.value }))} maxLength={50} placeholder="e.g. 09:00 AM" />
                           </div>
                         </div>
                         <div className="space-y-2">
                           <Label>Location</Label>
-                          <Input value={eventForm.location} onChange={(e) => setEventForm((p) => ({ ...p, location: e.target.value }))} />
+                          <Input value={eventForm.location} onChange={(e) => setEventForm((p) => ({ ...p, location: e.target.value }))} maxLength={200} />
                         </div>
                         <div className="space-y-2">
                           <Label>Category</Label>
