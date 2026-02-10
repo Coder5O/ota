@@ -54,7 +54,7 @@ export default function Events() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-16 md:py-20 bg-gradient-hero pattern-african">
+      <section className="py-10 md:py-14 bg-gradient-hero pattern-african">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
             <span className="inline-block px-3 py-1 text-sm font-medium text-gold bg-gold/20 rounded-full mb-4">
@@ -72,9 +72,9 @@ export default function Events() {
       </section>
 
       {/* Calendar Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-10 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <Card className="lg:col-span-1">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="font-display text-xl">Calendar</CardTitle>
@@ -153,7 +153,7 @@ export default function Events() {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-10 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="font-display text-3xl font-bold text-foreground mb-8">Upcoming Events</h2>
           {upcomingEvents.length === 0 ? (

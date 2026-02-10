@@ -57,16 +57,13 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* Right side */}
           <div className="hidden md:flex items-center gap-3">
             {isAdmin && (
               <Button variant="outline" size="sm" asChild>
                 <Link to="/admin"><Shield className="w-4 h-4 mr-1" />Admin</Link>
               </Button>
             )}
-            <Button variant="gold" asChild>
-              <Link to="/membership">Join OTA</Link>
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -102,13 +99,15 @@ export function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <div className="pt-2 px-4">
-                <Button variant="gold" className="w-full" asChild>
-                  <Link to="/membership" onClick={() => setIsOpen(false)}>
-                    Join OTA
-                  </Link>
-                </Button>
-              </div>
+              {isAdmin && (
+                <div className="pt-2 px-4">
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <Link to="/admin" onClick={() => setIsOpen(false)}>
+                      <Shield className="w-4 h-4 mr-1" />Admin
+                    </Link>
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         )}

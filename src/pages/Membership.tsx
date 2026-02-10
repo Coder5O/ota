@@ -114,7 +114,7 @@ export default function Membership() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-16 md:py-20 bg-gradient-hero pattern-african">
+      <section className="py-10 md:py-14 bg-gradient-hero pattern-african">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
             <span className="inline-block px-3 py-1 text-sm font-medium text-gold bg-gold/20 rounded-full mb-4">
@@ -131,7 +131,7 @@ export default function Membership() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 md:py-16">
         <div className="container mx-auto px-4">
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
