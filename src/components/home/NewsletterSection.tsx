@@ -43,7 +43,7 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section className="py-10 md:py-14 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-6">

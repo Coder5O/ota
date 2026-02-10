@@ -54,7 +54,7 @@ export default function About() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-16 md:py-24 bg-gradient-hero pattern-african">
+      <section className="py-12 md:py-16 bg-gradient-hero pattern-african">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
             <span className="inline-block px-3 py-1 text-sm font-medium text-gold bg-gold/20 rounded-full mb-4">
@@ -73,11 +73,11 @@ export default function About() {
       </section>
 
       {/* History */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
-              <h2 className="font-display text-3xl font-bold text-foreground mb-6">
+              <h2 className="font-display text-3xl font-bold text-foreground mb-4">
                 Our History
               </h2>
               <div className="space-y-4 text-muted-foreground">
@@ -131,9 +131,9 @@ export default function About() {
       </section>
 
       {/* Strategic Pillars */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-12 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
               Five Strategic Development Pillars
             </h2>
@@ -161,9 +161,9 @@ export default function About() {
       </section>
 
       {/* Leadership */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
               Our Leadership
             </h2>
