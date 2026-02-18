@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useParams, Link, useSearchParams } from "react-router-dom"; // Added useSearchParams
 import { useEffect, useRef } from "react"; // Added useEffect and useRef
 import { Layout } from "@/components/layout/Layout";
@@ -6,6 +7,15 @@ import { MapPin, ArrowLeft, Users, Trophy } from "lucide-react"; // Added Trophy
 import { Button } from "@/components/ui/button";
 
 // Assets imports remain the same
+=======
+import { useParams, Link } from "react-router-dom";
+import { Layout } from "@/components/layout/Layout";
+import { getChapterBySlug, chapters } from "@/data/chapters";
+import { MapPin, ArrowLeft, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+// Map chapter slugs to available images (we have 6 chapter images)
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
 import chapterWindhoek from "@/assets/chapter-windhoek.jpg";
 import chapterOkahandja from "@/assets/chapter-okahandja.jpg";
 import chapterOkakarara from "@/assets/chapter-okakarara.jpg";
@@ -22,10 +32,15 @@ const chapterImages: Record<string, string> = {
   "aminuis": chapterAminuis,
 };
 
+<<<<<<< HEAD
+=======
+// Fallback image for chapters without dedicated photos
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
 const fallbackImage = chapterWindhoek;
 
 export default function ChapterDetail() {
   const { slug } = useParams<{ slug: string }>();
+<<<<<<< HEAD
   const [searchParams] = useSearchParams(); // Hook to read ?view=contributions
   const contributionsRef = useRef<HTMLDivElement>(null); // Reference for scrolling
   
@@ -41,6 +56,10 @@ export default function ChapterDetail() {
     }
   }, [searchParams]);
 
+=======
+  const chapter = slug ? getChapterBySlug(slug) : undefined;
+
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
   if (!chapter) {
     return (
       <Layout>
@@ -57,13 +76,21 @@ export default function ChapterDetail() {
 
   const image = chapterImages[chapter.slug] || fallbackImage;
 
+<<<<<<< HEAD
+=======
+  // Get nearby chapters (same region, excluding self)
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
   const nearby = chapters
     .filter((c) => c.region === chapter.region && c.slug !== chapter.slug)
     .slice(0, 4);
 
   return (
     <Layout>
+<<<<<<< HEAD
       {/* Hero Section */}
+=======
+      {/* Hero */}
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
       <section className="relative h-[50vh] min-h-[320px]">
         <img src={image} alt={chapter.name} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-earth/90 via-earth/40 to-transparent" />
@@ -79,19 +106,31 @@ export default function ChapterDetail() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Main Content */}
+=======
+      {/* Content */}
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
       <section className="container mx-auto px-4 py-10 md:py-14">
         <div className="max-w-3xl">
           <h2 className="font-display text-xl font-bold mb-3 text-foreground">About this Chapter</h2>
           <p className="text-muted-foreground leading-relaxed text-base">{chapter.description}</p>
 
           <div className="mt-8 grid grid-cols-2 gap-4">
+<<<<<<< HEAD
             <div className="bg-muted/40 rounded-xl p-5 border border-border/50">
+=======
+            <div className="bg-muted/40 rounded-xl p-5">
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
               <MapPin className="w-5 h-5 text-gold mb-2" />
               <p className="text-sm font-medium text-foreground">Location</p>
               <p className="text-xs text-muted-foreground">{chapter.lat.toFixed(4)}°S, {chapter.lng.toFixed(4)}°E</p>
             </div>
+<<<<<<< HEAD
             <div className="bg-muted/40 rounded-xl p-5 border border-border/50">
+=======
+            <div className="bg-muted/40 rounded-xl p-5">
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
               <Users className="w-5 h-5 text-gold mb-2" />
               <p className="text-sm font-medium text-foreground">Region</p>
               <p className="text-xs text-muted-foreground">{chapter.region}</p>
@@ -99,6 +138,7 @@ export default function ChapterDetail() {
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* --- NEW: CONTRIBUTIONS SECTION --- */}
         <div 
           ref={contributionsRef} 
@@ -133,13 +173,22 @@ export default function ChapterDetail() {
         {/* Nearby Chapters */}
         {nearby.length > 0 && (
           <div className="mt-20">
+=======
+        {/* Nearby Chapters */}
+        {nearby.length > 0 && (
+          <div className="mt-12">
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
             <h3 className="font-display text-lg font-bold mb-4 text-foreground">Other chapters in {chapter.region}</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {nearby.map((c) => (
                 <Link
                   key={c.slug}
                   to={`/chapters/${c.slug}`}
+<<<<<<< HEAD
                   className="group bg-muted/30 hover:bg-muted/60 rounded-xl p-4 transition-colors border border-transparent hover:border-gold/20"
+=======
+                  className="group bg-muted/30 hover:bg-muted/60 rounded-xl p-4 transition-colors"
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
                 >
                   <p className="font-medium text-sm text-foreground group-hover:text-gold transition-colors">{c.name}</p>
                   <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
@@ -153,4 +202,8 @@ export default function ChapterDetail() {
       </section>
     </Layout>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5f5b639a9e305195db3a947bc5de89720e59277f
