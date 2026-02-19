@@ -41,15 +41,21 @@ export function ChaptersMap() {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
     chapters.forEach((ch) => {
-      // Use the property from chapters.ts directly
       const isActive = !!ch.hasActiveContributions; 
       const icon = createIcon(isActive);
 
       const popupContent = document.createElement('div');
+      // Added styling for images and better layout
       popupContent.innerHTML = `
-        <div style="font-family: sans-serif; padding: 5px; min-width: 140px;">
-          <strong style="display: block; font-size: 14px; margin-bottom: 2px;">${ch.name}</strong>
-          <p style="font-size: 11px; color: #666; margin-bottom: 8px;">${ch.region}</p>
+        <div style="font-family: sans-serif; padding: 2px; min-width: 180px;">
+          ${ch.image ? `
+            <img src="${ch.image}" 
+                 alt="${ch.name}" 
+                 style="width: 100%; height: 100px; object-fit: cover; border-radius: 6px; margin-bottom: 8px; display: block;" 
+                 onerror="this.style.display='none'"/>
+          ` : ''}
+          <strong style="display: block; font-size: 14px; margin-bottom: 2px; color: #1a1a1a;">${ch.name}</strong>
+          <p style="font-size: 11px; color: #666; margin-bottom: 10px;">${ch.region}</p>
           <button id="btn-${ch.slug}" style="
             width: 100%; 
             background: ${isActive ? '#22c55e' : '#D4A843'}; 
@@ -61,7 +67,8 @@ export function ChaptersMap() {
             font-weight: bold;
             font-size: 10px;
             text-transform: uppercase;
-          ">
+            transition: opacity 0.2s;
+          " onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
             ${isActive ? '📊 View Contributions' : 'View Chapter Detail'}
           </button>
         </div>
@@ -74,7 +81,6 @@ export function ChaptersMap() {
         const btn = document.getElementById(`btn-${ch.slug}`);
         if (btn) {
           btn.onclick = () => {
-            // Navigate based on active status
             const path = isActive 
               ? `/contributions?chapter=${ch.slug}` 
               : `/chapters/${ch.slug}`;
@@ -101,13 +107,13 @@ export function ChaptersMap() {
               <h2 className="text-xl font-bold tracking-tight">Regional Impact Map</h2>
               <p className="text-xs text-muted-foreground mt-1">Click markers to view chapter details or contribution data</p>
             </div>
-            <div className="flex gap-4 text-[10px] uppercase font-bold text-muted-foreground bg-secondary/50 p-2 px-3 rounded-lg">
+            <div className="flex gap-4 text-[10px] uppercase font-bold text-muted-foreground bg-secondary/50 p-2 px-3 rounded-lg border">
               <span className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#22c55e] shadow-sm"/> Active Data</span>
               <span className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#D4A843] shadow-sm"/> Chapters</span>
             </div>
         </div>
 
-        <div className="relative rounded-2xl border overflow-hidden shadow-2xl">
+        <div className="relative rounded-2xl border overflow-hidden shadow-2xl bg-muted/20">
           <div ref={mapRef} className="w-full h-[550px] z-0" />
           
           {isZoomed && (
@@ -126,6 +132,10 @@ export function ChaptersMap() {
           0% { outline: 3px solid rgba(34, 197, 94, 0.4); }
           70% { outline: 8px solid rgba(34, 197, 94, 0); }
           100% { outline: 3px solid rgba(34, 197, 94, 0); }
+        }
+        .leaflet-popup-content-wrapper {
+          border-radius: 12px !important;
+          padding: 4px !important;
         }
       `}</style>
     </section>

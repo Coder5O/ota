@@ -60,8 +60,16 @@ export const chapters: Chapter[] = [
     image: "/images/heritage/images (3).jpg", 
     description: "Located deep in the Omaheke, championing rural development." 
   },
-  // ... all other chapters stay the same, but without the git merge markers
-  { name: "Otjiwarongo", slug: "otjiwarongo", lat: -20.4636, lng: 16.6478, region: "Otjozondjupa Region", image: "/images/heritage/istockphoto-499749596-612x612.jpg", description: "A growing urban chapter." },
+  { 
+    name: "Otjiwarongo", 
+    slug: "otjiwarongo", 
+    lat: -20.4636, 
+    lng: 16.6478, 
+    region: "Otjozondjupa Region", 
+    hasActiveContributions: true,
+    image: "/images/heritage/istockphoto-499749596-612x612.jpg", 
+    description: "A growing urban chapter." 
+  },
   { name: "Ovitoto", slug: "ovitoto", lat: -21.75, lng: 16.85, region: "Otjozondjupa Region", image: "/images/heritage/ovitoto.jpg", description: "One of the earliest Ovaherero settlements." },
   { name: "Otjinene", slug: "otjinene", lat: -21.45, lng: 18.85, region: "Omaheke Region", image: "/images/heritage/otjinene.jpg", description: "Serving scattered pastoral communities." },
   { name: "Omaruru", slug: "omaruru", lat: -21.4333, lng: 15.9333, region: "Erongo Region", image: "/images/heritage/omaruru.jpg", description: "Known for its rich history and heritage festivals." },
@@ -73,7 +81,7 @@ export const chapters: Chapter[] = [
   { name: "Otavi", slug: "otavi", lat: -19.65, lng: 17.3333, region: "Otjozondjupa Region", image: "/images/heritage/otavi.jpg", description: "Agricultural heartland chapter." },
   { name: "Waterberg", slug: "waterberg", lat: -20.5, lng: 17.25, region: "Otjozondjupa Region", image: "/images/heritage/Waterberg.jpg", description: "Preserving the memory of the 1904 battle." },
   { name: "Epukiro", slug: "epukiro", lat: -22.35, lng: 19.5, region: "Omaheke Region", image: "/images/heritage/epukiro.jpg", description: "Supports pastoral livelihoods." },
-  { name: "Eiseb", slug: "eiseb", lat: -21.6, lng: 19.8, region: "Omaheke Region", image: "/images/heritage/eiseb.jpg", description: "Ensuring cultural continuity in isolated regions."},
+  { name: "Eiseb", slug: "eiseb", lat: -21.6, lng: 19.8, region: "Omaheke Region", image: "/images/heritage/eiseb.jpg", description: "Ensuring cultural continuity in isolated areas." }
 ];
 
 export function getChapterBySlug(slug: string): Chapter | undefined {
