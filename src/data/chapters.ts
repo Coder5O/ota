@@ -7,11 +7,11 @@ export interface Chapter {
   description: string;
   image?: string;
   hasActiveContributions?: boolean; 
-  leader?: string; // Added to support the traditional leaders (Mbaras)
+  leader?: string;
 }
 
 export const chapters: Chapter[] = [
-  // --- EXISTING CHAPTERS (PRESERVED) ---
+  // --- EXISTING CHAPTERS ---
   { 
     name: "Windhoek Central", 
     slug: "windhoek-central", 
@@ -73,7 +73,7 @@ export const chapters: Chapter[] = [
     description: "A growing urban chapter." 
   },
   { name: "Ovitoto", slug: "ovitoto", lat: -21.75, lng: 16.85, region: "Otjozondjupa Region", image: "/images/heritage/ovitoto.jpg", leader: "Mbara", description: "One of the earliest Ovaherero settlements." },
-  { name: "Otjinene", slug: "otjinene", lat: -21.45, lng: 18.85, region: "Omaheke Region", image: "/images/heritage/otjinene.jpg", leader: "Mbara Katjariua", description: "Serving scattered pastoral communities." },
+  { name: "Otjinene", slug: "otjinene", lat: -21.45, lng: 18.85, region: "Omaheke Region", image: "/images/heritage/otjinene.jpg", leader: "Mbara Katjariuua", description: "Serving scattered pastoral communities." },
   { name: "Omaruru", slug: "omaruru", lat: -21.4333, lng: 15.9333, region: "Erongo Region", image: "/images/heritage/omaruru.jpg", description: "Known for its rich history and heritage festivals." },
   { name: "Karibib", slug: "karibib", lat: -21.9333, lng: 15.85, region: "Erongo Region", image: "/images/heritage/Karibib.jpg", description: "A mining-town chapter supporting community welfare." },
   { name: "Outjo", slug: "outjo", lat: -20.1167, lng: 16.15, region: "Kunene Region", image: "/images/heritage/Outjo.jpg", description: "Gateway to Etosha, promotes eco-tourism." },
@@ -84,7 +84,8 @@ export const chapters: Chapter[] = [
   { name: "Waterberg", slug: "waterberg", lat: -20.5, lng: 17.25, region: "Otjozondjupa Region", image: "/images/heritage/Waterberg.jpg", description: "Preserving the memory of the 1904 battle." },
   { name: "Epukiro", slug: "epukiro", lat: -22.35, lng: 19.5, region: "Omaheke Region", image: "/images/heritage/epukiro.jpg", leader: "Mbara", description: "Supports pastoral livelihoods." },
   { name: "Eiseb", slug: "eiseb", lat: -21.6, lng: 19.8, region: "Omaheke Region", image: "/images/heritage/eiseb.jpg", leader: "Mbara Marenga", description: "Ensuring cultural continuity in isolated areas." },
-// --- NEW CHAPTERS FROM NOTES (UPDATED WITH IMAGES) ---
+
+  // --- NEW CHAPTERS FROM NOTES ---
   { 
     name: "Otjinene (Omuramba)", 
     slug: "otjinene-omuramba", 
@@ -165,17 +166,18 @@ export const chapters: Chapter[] = [
     image: "http://googleusercontent.com/image_collection/image_retrieval/4718468447361873282_0",
     description: "Known for successful community-based livestock programs." 
   },
-{
- name: "Okondjatu", 
+  {
+    name: "Okondjatu", 
     slug: "okondjatu", 
     lat: -21.32, 
     lng: 17.75, 
     region: "Otjozondjupa Region", 
     leader: "Mbara Nozengi", 
-    image: "
-    
-  },
-    ]
+    image: "http://googleusercontent.com/image_collection/image_retrieval/4718468447361873282_0",
+    description: "A major trade and cultural hub in the Otjozondjupa south."
+  }
+];
+
 export function getChapterBySlug(slug: string): Chapter | undefined {
   return chapters.find((ch) => ch.slug === slug);
 }
