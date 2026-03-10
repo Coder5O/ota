@@ -165,15 +165,17 @@ export const chapters: Chapter[] = [
     image: "http://googleusercontent.com/image_collection/image_retrieval/4718468447361873282_0",
     description: "Known for successful community-based livestock programs." 
   },
-  { 
-    name: "Okondjatu", 
+{
+ name: "Okondjatu", 
     slug: "okondjatu", 
     lat: -21.32, 
     lng: 17.75, 
     region: "Otjozondjupa Region", 
     leader: "Mbara Nozengi", 
     image: "
-
+    
+  },
+    ]
 export function getChapterBySlug(slug: string): Chapter | undefined {
   return chapters.find((ch) => ch.slug === slug);
 }
