@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getChapterBySlug, chapters } from "@/data/chapters";
 import { MapPin, ArrowLeft, Users, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { getContributionsByChapter } from "@/data/contributions";
 // Map chapter slugs to available images
 import chapterWindhoek from "@/assets/chapter-windhoek.jpg";
 import chapterOkahandja from "@/assets/chapter-okahandja.jpg";
@@ -105,34 +105,55 @@ export default function ChapterDetail() {
         </div>
 
         {/* --- CONTRIBUTIONS SECTION --- */}
-        <div 
-          ref={contributionsRef} 
-          className="mt-16 pt-10 border-t border-border"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <Trophy className="w-6 h-6 text-green-600" />
-            <h2 className="font-display text-2xl font-bold text-foreground">Community Contributions</h2>
+       {/* --- IMPROVED CONTRIBUTIONS SECTION --- */}
+<div ref={contributionsRef} className="pt-10 border-t border-border">
+  <div className="flex items-center justify-between mb-8">
+    <div className="flex items-center gap-3">
+      <Trophy className="w-6 h-6 text-green-600" />
+      <h2 className="font-display text-2xl font-bold text-foreground">Active Contributions</h2>
+    </div>
+    <span className="text-xs font-bold bg-green-100 text-green-700 px-3 py-1 rounded-full uppercase tracking-tighter">
+      Verified Data
+    </span>
+  </div>
+  
+  {getContributionsByChapter(chapter.slug).length > 0 ? (
+    <div className="grid gap-4">
+      {getContributionsByChapter(chapter.slug).map((project) => (
+        <div key={project.id} className="group bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-all">
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="font-bold text-lg text-foreground group-hover:text-green-600 transition-colors">
+              {project.title}
+            </h3>
+            <span className={`text-[10px] font-bold px-2 py-0.5 rounded border uppercase ${
+              project.status === 'Ongoing' ? 'border-blue-200 text-blue-600 bg-blue-50' : 
+              project.status === 'Completed' ? 'border-green-200 text-green-600 bg-green-50' : 
+              'border-amber-200 text-amber-600 bg-amber-50'
+            }`}>
+              {project.status}
+            </span>
           </div>
-          
-          {chapter.hasActiveContributions ? (
-            <div className="grid gap-6">
-              <div className="bg-green-50/50 border border-green-100 rounded-2xl p-6">
-                <p className="text-green-800 font-semibold mb-2">Active Projects & Updates</p>
-                <p className="text-muted-foreground text-sm">
-                  This chapter has active cultural preservation projects. Members are currently documenting 
-                  ancestral oral histories and livestock management traditions unique to the {chapter.region}.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="bg-muted/20 rounded-2xl p-8 text-center border-2 border-dashed border-muted">
-              <p className="text-muted-foreground italic">No active contributions for this chapter yet. Be the first to add one!</p>
-              <Button variant="outline" className="mt-4 border-gold text-gold hover:bg-gold hover:text-white">
-                Submit Contribution
-              </Button>
-            </div>
-          )}
+          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+            {project.description}
+          </p>
+          <div className="flex items-center gap-4 text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
+            <span>📅 {project.date}</span>
+            <span>📂 {project.category}</span>
+          </div>
         </div>
+      ))}
+    </div>
+  ) : (
+    <div className="bg-muted/20 rounded-2xl p-10 text-center border-2 border-dashed border-muted">
+      <p className="text-muted-foreground italic mb-6 text-lg">
+        No active projects currently listed for {chapter.name}.
+      </p>
+      <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-white">
+        Submit a Project Update
+      </Button>
+    </div>
+  )}
+</div>
 
         {/* Nearby Chapters */}
         {nearby.length > 0 && (

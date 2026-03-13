@@ -8,10 +8,11 @@ export interface Chapter {
   image?: string;
   hasActiveContributions?: boolean; 
   leader?: string;
+  history?: string;
 }
 
 export const chapters: Chapter[] = [
-  // --- EXISTING CHAPTERS (LOCAL PATHS PRESERVED) ---
+  // --- EXISTING CHAPTERS (HISTORIC CORE) ---
   { 
     name: "Windhoek Central", 
     slug: "windhoek-central", 
@@ -19,8 +20,10 @@ export const chapters: Chapter[] = [
     lng: 17.0658, 
     region: "Khomas Region",
     hasActiveContributions: true, 
+    leader: "OTA Administrative Council",
     image: "/images/heritage/adore-africa-destination-namibia-windhoek-central-region-thumb-FA.jpg", 
-    description: "The capital chapter serving as the administrative heart of OTA." 
+    description: "The capital chapter serving as the administrative heart of the OTA.",
+    history: "Historically known as Otjomuise, Windhoek serves as the diplomatic and administrative nerve center. It was the site of the 1959 Old Location uprising, a pivotal moment in the resistance against colonial forced removals. Today, it coordinates the activities of all regional chapters and international advocacy."
   },
   { 
     name: "Okahandja", 
@@ -29,8 +32,10 @@ export const chapters: Chapter[] = [
     lng: 16.9167, 
     region: "Otjozondjupa Region", 
     hasActiveContributions: true, 
+    leader: "Chief Tjinaani Maharero",
     image: "/images/heritage/images.jpg", 
-    description: "Historic seat of Ovaherero chiefs and location of annual commemorations." 
+    description: "Historic seat of Ovaherero chiefs and location of annual commemorations.",
+    history: "The 'Garden Town' is the most sacred site in Ovaherero history. It is the final resting place of great leaders including Tjamuaha, Maharero, and Samuel Maharero. Every August, thousands gather here for Red Flag Day (Otjiserandu) to honor the ancestors and commemorate the return of Samuel Maharero's remains in 1923."
   },
   { 
     name: "Okakarara", 
@@ -39,8 +44,10 @@ export const chapters: Chapter[] = [
     lng: 17.4333, 
     region: "Otjozondjupa Region", 
     hasActiveContributions: true, 
+    leader: "Chief Vipuira Kapuuo",
     image: "/images/heritage/Okakarara.jpg", 
-    description: "A vibrant rural chapter known for livestock programmes." 
+    description: "A vibrant rural chapter known for livestock programmes.",
+    history: "Located at the foot of the Waterberg Plateau, Okakarara emerged as a major center for pastoralists in the early 20th century. It is intrinsically linked to the Battle of Hamakari. The chapter is a leader in modernizing traditional livestock management while maintaining cultural integrity."
   },
   { 
     name: "Gobabis", 
@@ -49,8 +56,10 @@ export const chapters: Chapter[] = [
     lng: 18.9667, 
     region: "Omaheke Region", 
     hasActiveContributions: true, 
+    leader: "Chief Ebson Kovane",
     image: "/images/heritage/images(1).jpg", 
-    description: "Gateway to the Kalahari, supporting farming communities." 
+    description: "Gateway to the Kalahari, supporting farming communities.",
+    history: "Gobabis, or Epako, was a site of significant conflict during the colonial wars of the 1890s. As the gateway to the Omaheke, it witnessed the tragic retreat of the people toward the Botswana border in 1904. It now serves as a hub for the 'Cattle Country' chapters."
   },
   { 
     name: "Aminuis", 
@@ -59,8 +68,10 @@ export const chapters: Chapter[] = [
     lng: 19.1167, 
     region: "Omaheke Region", 
     hasActiveContributions: true,
+    leader: "Chief Fanuel C. Maharero",
     image: "/images/heritage/images (3).jpg", 
-    description: "Located deep in the Omaheke, championing rural development." 
+    description: "Located deep in the Omaheke, championing rural development.",
+    history: "Aminuis was the headquarters of Chief Hosea Kutako, the 'Father of Namibian Nationalism.' It was here that the first petitions to the United Nations were drafted, signaling the birth of the international struggle for Namibian independence and the restoration of traditional lands."
   },
   { 
     name: "Otjiwarongo", 
@@ -69,23 +80,57 @@ export const chapters: Chapter[] = [
     lng: 16.6478, 
     region: "Otjozondjupa Region", 
     hasActiveContributions: true,
+    leader: "Chief Vetaruhe Kandorozu",
     image: "/images/heritage/istockphoto-499749596-612x612.jpg", 
-    description: "A growing urban chapter." 
+    description: "A growing urban chapter and cultural trade hub.",
+    history: "Known as the 'place of fat cattle,' Otjiwarongo has historically been a critical rail and trade junction. This chapter focuses on connecting the rural farming hinterlands of Okakarara and Otjituuo with the national economy while preserving traditional language and customs."
   },
-  { name: "Ovitoto", slug: "ovitoto", lat: -21.75, lng: 16.85, region: "Otjozondjupa Region", image: "/images/heritage/ovitoto.jpg", description: "One of the earliest Ovaherero settlements." },
-  { name: "Otjinene", slug: "otjinene", lat: -21.45, lng: 18.85, region: "Omaheke Region", image: "/images/heritage/otjinene.jpg", description: "Serving scattered pastoral communities." },
-  { name: "Omaruru", slug: "omaruru", lat: -21.4333, lng: 15.9333, region: "Erongo Region", image: "/images/heritage/omaruru.jpg", description: "Known for its rich history and heritage festivals." },
-  { name: "Karibib", slug: "karibib", lat: -21.9333, lng: 15.85, region: "Erongo Region", image: "/images/heritage/Karibib.jpg", description: "A mining-town chapter supporting community welfare." },
-  { name: "Outjo", slug: "outjo", lat: -20.1167, lng: 16.15, region: "Kunene Region", image: "/images/heritage/Outjo.jpg", description: "Gateway to Etosha, promotes eco-tourism." },
-  { name: "Kalkfeld", slug: "kalkfeld", lat: -20.8833, lng: 16.2, region: "Otjozondjupa Region", image: "/images/heritage/Kalkfeld.jpg", description: "Farming community chapter focused on livestock." },
-  { name: "Grootfontein", slug: "grootfontein", lat: -19.5667, lng: 18.1167, region: "Otjozondjupa Region", image: "/images/heritage/grootfontein3.jpg", description: "Northern hub chapter coordinating cultural events." },
-  { name: "Tsumeb", slug: "tsumeb", lat: -19.2333, lng: 17.7167, region: "Oshikoto Region", image: "/images/heritage/Tsumeb2.jpg", description: "Mining-heritage chapter supporting education." },
-  { name: "Otavi", slug: "otavi", lat: -19.65, lng: 17.3333, region: "Otjozondjupa Region", image: "/images/heritage/otavi.jpg", description: "Agricultural heartland chapter." },
-  { name: "Waterberg", slug: "waterberg", lat: -20.5, lng: 17.25, region: "Otjozondjupa Region", image: "/images/heritage/Waterberg.jpg", description: "Preserving the memory of the 1904 battle." },
-  { name: "Epukiro", slug: "epukiro", lat: -22.35, lng: 19.5, region: "Omaheke Region", image: "/images/heritage/epukiro.jpg", description: "Supports pastoral livelihoods." },
-  { name: "Eiseb", slug: "eiseb", lat: -21.6, lng: 19.8, region: "Omaheke Region", image: "/images/heritage/eiseb.jpg", description: "Ensuring cultural continuity in isolated areas." },
+  { 
+    name: "Ovitoto", 
+    slug: "ovitoto", 
+    lat: -21.75, 
+    lng: 16.85, 
+    region: "Otjozondjupa Region", 
+    leader: "Chief Vekuui Rukoro (Legacy)",
+    image: "/images/heritage/ovitoto.jpg", 
+    description: "One of the earliest Ovaherero settlements.",
+    history: "Ovitoto is one of the oldest established traditional areas. Despite its proximity to commercial farms, it has remained a resilient enclave of traditional life. The chapter is famous for its steep hills and the preservation of ancient oral genealogies."
+  },
+  { 
+    name: "Otjinene", 
+    slug: "otjinene", 
+    lat: -21.45, 
+    lng: 18.85, 
+    region: "Omaheke Region", 
+    leader: "Chief Tjitana Maharero",
+    image: "/images/heritage/otjinene.jpg", 
+    description: "Serving scattered pastoral communities.",
+    history: "Otjinene is a vital node in the Omaheke region, acting as a center for the surrounding 'Ehungiro' and 'Omuramba' communities. It is renowned for its large-scale livestock auctions and its role as a cultural custodian for the eastern regions."
+  },
+  { 
+    name: "Omaruru", 
+    slug: "omaruru", 
+    lat: -21.4333, 
+    lng: 15.9333, 
+    region: "Erongo Region", 
+    leader: "Chief Mutjinde Katjiua",
+    image: "/images/heritage/omaruru.jpg", 
+    description: "Known for its rich history and heritage festivals.",
+    history: "Omaruru is the home of the White Flag (Otjizemba). It was the stronghold of Chief Zeraua and played a major role in the resistance against German colonial forces. The annual festival in Omaruru celebrates the unique lineage of the western Ovaherero people."
+  },
+  { 
+    name: "Waterberg", 
+    slug: "waterberg", 
+    lat: -20.5, 
+    lng: 17.25, 
+    region: "Otjozondjupa Region", 
+    leader: "Council of Elders",
+    image: "/images/heritage/Waterberg.jpg", 
+    description: "Preserving the memory of the 1904 battle.",
+    history: "The Waterberg Plateau (Hamakari) is the site of the defining battle of the 1904 genocide. This chapter functions primarily as a site of remembrance and education, managing the historical records of the families who were forced into the Omaheke desert."
+  },
 
-  // --- NEW CHAPTERS (STABLE MAPS-STYLE LINKS) ---
+  // --- REGIONAL & NEW CHAPTERS ---
   { 
     name: "Omongua", 
     slug: "omongua", 
@@ -94,27 +139,8 @@ export const chapters: Chapter[] = [
     region: "Omaheke Region", 
     leader: "Mbara Tjiundje",
     image: "https://images.unsplash.com/photo-1516491575772-bab9f3408070?auto=format&fit=crop&q=80&w=800", 
-    description: "Located in the Aminuis constituency with deep cultural roots." 
-  },
-  { 
-    name: "Otjinene (Omuramba)", 
-    slug: "otjinene-omuramba", 
-    lat: -21.35, 
-    lng: 18.95, 
-    region: "Omaheke Region", 
-    leader: "Mbara Tjijahura",
-    image: "https://images.unsplash.com/photo-1620803051066-51368153ce23?auto=format&fit=crop&q=80&w=800", 
-    description: "Traditional authority area within the Omuramba catchment." 
-  },
-  { 
-    name: "Otjinene (Ehungiro)", 
-    slug: "otjinene-ehungiro", 
-    lat: -21.55, 
-    lng: 18.75, 
-    region: "Omaheke Region", 
-    leader: "Mbara Katjipetekera",
-    image: "https://images.unsplash.com/photo-1547471080-7fc2caa7df36?auto=format&fit=crop&q=80&w=800", 
-    description: "Traditional authority area serving the Ehungiro community." 
+    description: "Located in the Aminuis constituency with deep cultural roots.",
+    history: "Omongua is an extension of the Aminuis traditional authority. It is a community built on the values of mutual aid and traditional grazing rights, serving as a model for rural self-governance under the OTA."
   },
   { 
     name: "Otjombinde", 
@@ -124,7 +150,8 @@ export const chapters: Chapter[] = [
     region: "Omaheke Region", 
     leader: "Mbara Tjingaete",
     image: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&q=80&w=800", 
-    description: "A vital livestock hub serving the Talismanus community." 
+    description: "A vital livestock hub serving the Talismanus community.",
+    history: "Located near the Botswana border, Otjombinde (Talismanus) is a frontier chapter. It has been a site of refuge and regrouping for many families since the repatriation movements began in the late 20th century."
   },
   { 
     name: "Gam", 
@@ -134,67 +161,8 @@ export const chapters: Chapter[] = [
     region: "Otjozondjupa Region", 
     leader: "Mbara Kandjii",
     image: "https://images.unsplash.com/photo-1596708682977-628b760ba290?auto=format&fit=crop&q=80&w=800", 
-    description: "Established for Ovaherero who returned from Botswana." 
-  },
-  { 
-    name: "Okotjituo", 
-    slug: "okotjituo", 
-    lat: -21.15, 
-    lng: 17.55, 
-    region: "Otjozondjupa Region", 
-    leader: "Mbara Kapukare",
-    image: "https://images.unsplash.com/photo-1610444583163-f938d1720d77?auto=format&fit=crop&q=80&w=800", 
-    description: "A historic community focused on heritage preservation." 
-  },
-  { 
-    name: "Ozonahi", 
-    slug: "ozonahi", 
-    lat: -20.95, 
-    lng: 17.85, 
-    region: "Otjozondjupa Region", 
-    leader: "Mbara Kaangundue",
-    image: "https://images.unsplash.com/photo-1582294101292-12f5188f5cfc?auto=format&fit=crop&q=80&w=800", 
-    description: "Traditional area within the Okakarara constituency." 
-  },
-  { 
-    name: "Okamatapati", 
-    slug: "okamatapati", 
-    lat: -20.45, 
-    lng: 18.35, 
-    region: "Otjozondjupa Region", 
-    leader: "Mbara Rukambe-uazukuani",
-    image: "https://images.unsplash.com/photo-1523315802102-1818274d8122?auto=format&fit=crop&q=80&w=800", 
-    description: "Known for successful community-based livestock programs." 
-  },
-  { 
-    name: "Okondjatu", 
-    slug: "okondjatu", 
-    lat: -21.32, 
-    lng: 17.75, 
-    region: "Otjozondjupa Region", 
-    leader: "Mbara Nozengi",
-    image: "https://images.unsplash.com/photo-1580210287950-848e4268e0d9?auto=format&fit=crop&q=80&w=800", 
-    description: "Major trade and cultural hub." 
-  },
-  { 
-    name: "Omatjete", 
-    slug: "omatjete", 
-    lat: -21.05, 
-    lng: 15.55, 
-    region: "Erongo Region", 
-    leader: "Mbara Jeja",
-    image: "https://images.unsplash.com/photo-1492348530660-f4ca6793132c?auto=format&fit=crop&q=80&w=800", 
-    description: "Central station for the Erongo Zeraeua community." 
-  },
-  { 
-    name: "Otjimbingwe", 
-    slug: "otjimbingwe", 
-    lat: -22.35, 
-    lng: 16.13, 
-    region: "Erongo Region", 
-    leader: "Mbara Kauvi",
-    image: "https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?auto=format&fit=crop&q=80&w=800", 
-    description: "Historic missionary and trading capital." 
+    description: "Established for Ovaherero who returned from Botswana.",
+    history: "Gam was established in 1993 to facilitate the repatriation of Ovaherero descendants from Botswana. It is a chapter defined by the 'Return to the Ancestral Land,' where families have successfully rebuilt their herds and cultural lives after a century of exile."
   },
   { 
     name: "Ruacana", 
@@ -204,8 +172,11 @@ export const chapters: Chapter[] = [
     region: "Kunene Region", 
     leader: "Mbara Tjikuria",
     image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=800", 
-    description: "Chapter near the historic Ruacana Falls." 
+    description: "Chapter near the historic Ruacana Falls.",
+    history: "This chapter serves the northernmost communities near the Kunene river. It is a critical link between the Ovaherero and the Ovahimba communities, preserving the ancient shared heritage of the Kaokoland migration."
   },
+
+  // --- DIASPORA CHAPTERS ---
   { 
     name: "USA Chapter", 
     slug: "usa", 
@@ -214,7 +185,8 @@ export const chapters: Chapter[] = [
     region: "Diaspora", 
     leader: "Mbara Katuuo",
     image: "https://images.unsplash.com/photo-1617581629397-a72507c3de9e?auto=format&fit=crop&q=80&w=800", 
-    description: "Connecting the community in the USA." 
+    description: "Connecting the community in the USA.",
+    history: "The USA chapter is a hub for international advocacy. Based largely around Washington D.C., it has been instrumental in the legal fight for genocide reparations in international courts and keeping the diaspora connected to the OTA leadership."
   },
   { 
     name: "UK Chapter", 
@@ -224,7 +196,8 @@ export const chapters: Chapter[] = [
     region: "Diaspora", 
     leader: "Mbara Kasuto",
     image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=800", 
-    description: "Connecting the community in the UK." 
+    description: "Connecting the community in the UK.",
+    history: "Representing the community across Britain, the UK chapter focuses on educational exchange and cultural preservation for second-generation Ovaherero living in Europe, ensuring the language and traditional values are passed down."
   },
   { 
     name: "Botswana Chapter", 
@@ -234,7 +207,8 @@ export const chapters: Chapter[] = [
     region: "Diaspora", 
     leader: "Mbara Kahiko",
     image: "https://images.unsplash.com/photo-1590766940554-634a7ed41450?auto=format&fit=crop&q=80&w=800", 
-    description: "Serving communities in Botswana." 
+    description: "Serving communities in Botswana.",
+    history: "The Botswana chapter represents the descendants of those who survived the 1904 desert crossing. Concentrated in Sehitwa and Rakops, this chapter has maintained the Otjiherero culture for over a century in exile, remaining fiercely loyal to the OTA."
   },
   { 
     name: "SA Chapter", 
@@ -244,7 +218,8 @@ export const chapters: Chapter[] = [
     region: "Diaspora", 
     leader: "Mbara Kandorozu",
     image: "https://images.unsplash.com/photo-1543362142-2d14214227f0?auto=format&fit=crop&q=80&w=800", 
-    description: "South African chapter of the OTA." 
+    description: "South African chapter of the OTA.",
+    history: "This chapter serves the professional and student diaspora in South Africa. It facilitates cultural networking in Johannesburg, Pretoria, and Cape Town, and supports the OTA with technical and economic expertise."
   }
 ];
 

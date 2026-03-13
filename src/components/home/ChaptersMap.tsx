@@ -50,8 +50,9 @@ export function ChaptersMap() {
       const icon = createIcon(isActive);
 
       const popupContent = document.createElement('div');
+      // Updated UI: Split into two clear buttons
       popupContent.innerHTML = `
-        <div style="font-family: sans-serif; padding: 2px; min-width: 180px;">
+        <div style="font-family: sans-serif; padding: 2px; min-width: 190px;">
           ${ch.image ? `
             <img src="${ch.image}" 
                  alt="${ch.name}" 
@@ -67,36 +68,56 @@ export function ChaptersMap() {
           ` : ''}
 
           <p style="font-size: 11px; color: #666; margin-bottom: 10px;">${ch.region}</p>
-          <button id="btn-${ch.slug}" style="
-            width: 100%; 
-            background: ${isActive ? '#22c55e' : '#D4A843'}; 
-            color: white; 
-            border: none; 
-            padding: 8px 10px; 
-            border-radius: 4px; 
-            cursor: pointer; 
-            font-weight: bold;
-            font-size: 10px;
-            text-transform: uppercase;
-            transition: opacity 0.2s;
-          " onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-            ${isActive ? '📊 View Contributions' : 'View Chapter Detail'}
-          </button>
+          
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <button id="btn-details-${ch.slug}" style="
+              width: 100%; 
+              background: #1e293b; 
+              color: white; 
+              border: none; 
+              padding: 8px 10px; 
+              border-radius: 4px; 
+              cursor: pointer; 
+              font-weight: bold;
+              font-size: 10px;
+              text-transform: uppercase;
+            ">
+              📖 View Chapter History
+            </button>
+
+            ${isActive ? `
+              <button id="btn-contrib-${ch.slug}" style="
+                width: 100%; 
+                background: #22c55e; 
+                color: white; 
+                border: none; 
+                padding: 8px 10px; 
+                border-radius: 4px; 
+                cursor: pointer; 
+                font-weight: bold;
+                font-size: 10px;
+                text-transform: uppercase;
+              ">
+                📊 View Contributions
+              </button>
+            ` : ''}
+          </div>
         </div>
       `;
 
       const marker = L.marker([ch.lat, ch.lng], { icon }).addTo(map);
       marker.bindPopup(popupContent);
 
+      // Handle button clicks within the Leaflet popup
       marker.on('popupopen', () => {
-        const btn = document.getElementById(`btn-${ch.slug}`);
-        if (btn) {
-          btn.onclick = () => {
-            const path = isActive 
-              ? `/contributions?chapter=${ch.slug}` 
-              : `/chapters/${ch.slug}`;
-            navigate(path);
-          };
+        const detailsBtn = document.getElementById(`btn-details-${ch.slug}`);
+        if (detailsBtn) {
+          detailsBtn.onclick = () => navigate(`/chapters/${ch.slug}`);
+        }
+
+        const contribBtn = document.getElementById(`btn-contrib-${ch.slug}`);
+        if (contribBtn) {
+          contribBtn.onclick = () => navigate(`/contributions?chapter=${ch.slug}`);
         }
       });
 
@@ -107,7 +128,12 @@ export function ChaptersMap() {
     });
 
     mapInstanceRef.current = map;
-    return () => { map.remove(); mapInstanceRef.current = null; };
+    return () => { 
+        if (mapInstanceRef.current) {
+            mapInstanceRef.current.remove(); 
+            mapInstanceRef.current = null; 
+        }
+    };
   }, [navigate]);
 
   const handleGlobalView = () => {
@@ -130,7 +156,6 @@ export function ChaptersMap() {
             </div>
             
             <div className="flex flex-wrap gap-3 items-center">
-              {/* View Toggles */}
               <div className="flex bg-secondary/50 p-1 rounded-lg border">
                 <button 
                   onClick={handleNamibiaView}
@@ -146,7 +171,6 @@ export function ChaptersMap() {
                 </button>
               </div>
 
-              {/* Legend */}
               <div className="flex gap-4 text-[10px] uppercase font-bold text-muted-foreground bg-secondary/30 p-2.5 px-3 rounded-lg border">
                 <span className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#22c55e]"/> Active Data</span>
                 <span className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#D4A843]"/> Chapters</span>
