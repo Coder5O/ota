@@ -86,11 +86,17 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-earth-foreground/20">
-          <p className="text-center text-sm text-earth-foreground/60">
+        <div className="mt-12 pt-8 border-t border-earth-foreground/20 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-center md:text-left text-sm text-earth-foreground/60">
             © {new Date().getFullYear()} Ovaherero Traditional Authority. All
             rights reserved.
           </p>
+          <Link
+            to="/admin/login"
+            className="text-sm text-earth-foreground/40 hover:text-gold transition-colors"
+          >
+            Admin Login
+          </Link>
         </div>
       </div>
     </footer>
